@@ -1,0 +1,18 @@
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="utf-8">
+        <title>Check My Weather!!</title>
+    </head>
+    <body>
+        <h1>Enter City's Name to get temperature, wind pressure and more!</h1>
+        <form action = "/city/" method= "POST">
+            {% csrf_token %}
+            {{ form }}
+            <button type="submit">Check</button>
+        </form>
+        <form action = "/cityip/" method = "POST">
+            {% csrf_token %}
+            <button type="submit">L0cation</button>
+        </form>
+    </body>
+</html>

@@ -1,0 +1,28 @@
+1)
+inside django
+
+do this command
+
+"source myvenv/bin/activate"
+
+to activate myvenv
+
+------
+2) "git status" gives us files that have changed since we last deployed
+---
+3)"git add --all ."
+--all means that git will also recognize if you've
+deleted files (by default, it only recognizes new/modified files).
+Also remember (from chapter 3) that . means the current directory.
+---
+4) "git commit -m "Changed the HTML for the site."" commit messages tells us
+what we have changed
+---
+5) "git push" push files on GitHub
+---
+6)"python manage.py runserver" run the website via terminal
+7)"
+$ cd ~/<your-pythonanywhere-username>.pythonanywhere.com
+$ git pull
+"
+Pull your code from github
