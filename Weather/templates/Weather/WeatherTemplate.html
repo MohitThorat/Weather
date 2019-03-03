@@ -4,15 +4,19 @@
         <title>Check My Weather!!</title>
     </head>
     <body>
-        <h1>Enter City's Name to get temperature, wind pressure and more!</h1>
+        <h1>Enter city's name to get temperature as well as forecast!</h1>
         <form action = "/city/" method= "POST">
             {% csrf_token %}
             {{ form }}
             <button type="submit">Check</button>
         </form>
-        <label>Country Code: {{ info.sys.country }}</label><br>
+        <form action = "/cityip/" method = "POST">
+            {% csrf_token %}
+            <button type="submit">Location</button>
+        </form>
+        <label>Country Code: {{ sys.country }}</label><br>
         <label>City Name: {{ info.name }}</label><br>
-        <label>Current Temperature: {{ info.main.temp }} Celcius</label><br>
+        <label>Current  Temperature: {{ info.main.temp }} Celcius</label><br>
         <label>Maximum Pridicted Temperature: {{ info.main.temp_max }} Celcius</label><br>
         <label>Minimum Predicted Temperature: {{ info.main.temp_min }} Celcius</label><br>
         <label>Pressure: {{ info.main.pressure }} hPa</label><br>
@@ -20,5 +24,20 @@
         <label>Humidity: {{ info.main.humidity }} %</label><br>
         <label>Cloudiness: {{ info.clouds.all }} %</label><br>
         <label>Weather Description: {{ info.weather.0.description }}</label><br>
+        <br>
+        <h2>Forecast:</h2>
+        <ul>
+            {% for day in info1.list %}
+            <h3><label>Date and Time: {{ day.dt_txt }}</label></h3><br>
+            <label>Current Predicted Temperature: {{ day.main.temp }} Celcius</label><br>
+            <label>Maximum Pridicted Temperature: {{ day.main.temp_max }} Celcius</label><br>
+            <label>Minimum Predicted Temperature: {{ day.main.temp_min }} Celcius</label><br>
+            <label>Pressure: {{ day.main.pressure }} hPa</label><br>
+            <label>Wind Speed: {{ day.wind.speed }} Meter/Sec</label><br>
+            <label>Humidity: {{ day.main.humidity }} %</label><br>
+            <label>Weather Description: {{ day.weather.description }}</label><br>
+            <br>
+            {% endfor %}
+        </ul>
     </body>
 </html>
