@@ -1,0 +1,33 @@
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="utf-8">
+        <title>Check My Weather!!</title>
+    </head>
+    <body>
+        <h1>Enter city's name to get current weather condtions!</h1>
+        <form action = "/city/" method= "POST">
+            {% csrf_token %}
+            {{ form }}
+            <button type="submit">Check</button>
+        </form>
+        <form action = "/cityip/" method = "POST">
+            {% csrf_token %}
+            <button type="submit">Location</button>
+        </form>
+        <form  action = "/forecast/" method = "POST">
+            {% csrf_token %}
+            <button   type="submit">Forecast</button>
+        </form>
+        <label>Country Code: {{ info.sys.country }}</label><br>
+        <label>City Name: {{ info.name }}</label><br>
+        <label>Current  Temperature: {{ info.main.temp|floatformat:1 }} Celcius</label><br>
+        <label>Maximum Pridicted Temperature: {{ info.main.temp_max|floatformat:1 }} Celcius</label><br>
+        <label>Minimum Predicted Temperature: {{ info.main.temp_min|floatformat:1 }} Celcius</label><br>
+        <label>Pressure: {{ info.main.pressure }} hPa</label><br>
+        <label>Wind Speed: {{ info.wind.speed }} Meter/Sec</label><br>
+        <label>Humidity: {{ info.main.humidity }} %</label><br>
+        <label>Cloudiness: {{ info.clouds.all }} %</label><br>
+        <label>Weather Description: {{ info.weather.0.description }}</label><br>
+        <br>
+    </body>
+</html>

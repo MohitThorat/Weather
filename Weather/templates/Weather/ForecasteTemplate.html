@@ -1,0 +1,70 @@
+{% load static %}
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="utf-8">
+        <title>Check My Weather!!</title>
+        <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+        <script type="text/javascript">google.load("visualization", "1", {packages:["corechart"]});
+        </script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="{% static 'css/home1.css' %}"> 
+    </head>
+    <body> <div class = "container">
+        <h1>Enter City Name for Forecast Weather Report.</h1>
+       <br><br> <form action = "/getforecast/" method= "POST" class = "form-inline"> <div class = "form-group">
+            {% csrf_token %}
+            {{ form }} </div> <br> <div class = "container">
+            <br><br><button type="submit" class = "btn btn-dark check_button">CHECK.</button>
+        </form><br><br>
+        <form action = "/getforecastip/" method = "POST">
+            {% csrf_token %}
+            <button type="submit" class = "btn btn-danger location_button">CURRENT LOCATION.</button> </div>
+        </form>
+        <form  action = "/" method = "POST">
+            {% csrf_token %}
+            <button   type="submit" class = "btn btn-success current_button"><-CURRENT.</button>
+        </form> 
+
+<br><br>
+
+        <h2>Country Code:{{ info1.city.country }} </h2><br>
+        <h2>City Name:{{ info1.city.name }}</h2><br>
+        <br>
+        <h2 style = "color : blue;">Forecast:</h2> <br><br>
+        <div>
+            {{ date_1 }}
+            {{ chart1.as_html }}
+        </div> <br><br>
+        <div>
+            {{ date_2 }}
+            {{ chart2.as_html }}
+        </div><br><br>
+        <div>
+            {{ date_3 }}
+            {{ chart3.as_html }}
+        </div><br><br>
+        <div>
+            {{ date_4 }}
+            {{ chart4.as_html }}
+        </div><br><br>
+        <ul>
+            {% for day in info1.list %}
+            <ul style="list-style-type:square;"><li><h2 style="color:red;"><label>Date and Time: {{ day.dt_txt }}</label></h2></li></ul><br>
+
+            <li><h3>Current Predicted Temperature: {{ day.main.temp|floatformat:1 }} Celcius</h3></li><br>
+           <li> <h3>Maximum Pridicted Temperature: {{ day.main.temp_max|floatformat:1 }} Celcius</h3></li><br>
+            <li><h3>Minimum Predicted Temperature: {{ day.main.temp_min|floatformat:1 }} Celcius</h3></li><br>
+            <li><h3>Pressure: {{ day.main.pressure }} hPa</h3></li><br>
+           <li> <h3>Wind Speed: {{ day.wind.speed }} Meter/Sec</h3></li><br>
+            <li><h3>Humidity: {{ day.main.humidity }} %</h3></li><br>
+            <li><h3>Weather Description: {{ day.weather.0.description }}</h3></li><br>
+            <br>
+            {% endfor %}
+        </ul>
+</div>
+    </body>
+</html>

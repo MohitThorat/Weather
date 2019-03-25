@@ -1,18 +1,68 @@
+<!--{% load static %}
 <html lang="en" dir="ltr">
     <head>
         <meta charset="utf-8">
         <title>Check My Weather!!</title>
-    </head>
-    <body>
-        <h1>Enter City's Name to get temperature, wind pressure and more!</h1>
-        <form action = "/city/" method= "POST">
-            {% csrf_token %}
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="{% static 'css/home.css' %}">   </head>
+
+
+<body>
+  <div class = "container">  <br>    <h1>Enter City Name To Get Weather Report.</h1>
+   <br>     <form action = "/city/" method= "POST" class = "form-inline">
+    <div class = "form-group">        {% csrf_token %}
             {{ form }}
-            <button type="submit">Check</button>
+    </div>   <br>    <div class = "container"> <br> <button type="submit" class = "btn btn-dark check_button">CHECK</button>
         </form>
         <form action = "/cityip/" method = "POST">
             {% csrf_token %}
-            <button type="submit">Location</button>
+       <br>   <button type="submit" class = "btn btn-danger location_button">CURRENT LOCATION.</button>
+   </div>     </form>
+  </div>  </body>
+
+
+</html>
+-->
+
+    {% load static %}
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="utf-8">
+        <title>Check My Weather!!</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="{% static 'css/home.css' %}">   </head>
+
+
+
+<body>
+
+        <div class = "container">  <br>    <h1>Enter City Name To Get Weather Report.</h1>
+   <br>
+
+        <form action = "/city/" method= "POST" class = "form-inline"> <div class = "form-group">
+            {% csrf_token %}
+            {{ form.as_p }} </div> <br> <div class = "container"> <br>
+            <button type="submit" class = "btn btn-dark check_button">CHECK.</button>
         </form>
+<br><br>
+        <form  action = "/cityip/" method = "POST">
+            {% csrf_token %}
+            <button  type="submit" class = "btn btn-danger location_button">CURRENT LOCATION.</button> </div>
+        </form>
+        <form  action = "/forecast/" method = "POST">
+            {% csrf_token %}
+            <button   type="submit" class = "btn btn-success forecast_button">FORECAST->.</button>
+        </form> </div>
+
     </body>
 </html>

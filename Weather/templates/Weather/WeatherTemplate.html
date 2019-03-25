@@ -1,10 +1,10 @@
-<html lang="en" dir="ltr">
+<!--{% load static %} <html lang="en" dir="ltr">
     <head>
         <meta charset="utf-8">
-        <title>Check My Weather!!</title>
-    </head>
+        <title>hey..Check My Weather!!</title>
+  <link rel="stylesheet" href="{% static 'css/home.css' %}">  </head>
     <body>
-        <h1>Enter city's name to get temperature as well as forecast!</h1>
+        <h1>Enter city's name to get ..!</h1>
         <form action = "/city/" method= "POST">
             {% csrf_token %}
             {{ form }}
@@ -14,7 +14,7 @@
             {% csrf_token %}
             <button type="submit">Location</button>
         </form>
-        <label>Country Code: {{ sys.country }}</label><br>
+        <label>Country Code: {{ info.sys.country }}</label><br>
         <label>City Name: {{ info.name }}</label><br>
         <label>Current  Temperature: {{ info.main.temp }} Celcius</label><br>
         <label>Maximum Pridicted Temperature: {{ info.main.temp_max }} Celcius</label><br>
@@ -35,9 +35,61 @@
             <label>Pressure: {{ day.main.pressure }} hPa</label><br>
             <label>Wind Speed: {{ day.wind.speed }} Meter/Sec</label><br>
             <label>Humidity: {{ day.main.humidity }} %</label><br>
-            <label>Weather Description: {{ day.weather.description }}</label><br>
+            <label>Weather Description: {{ day.weather.0.description }}</label><br>
             <br>
             {% endfor %}
         </ul>
+    </body>
+</html>
+-->
+
+
+{% load static %}
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="utf-8">
+        <title>Check My Weather!!</title>
+ 
+<meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="{% static 'css/home.css' %}">   </head>
+ 
+    <body>
+    <div class = "container">
+         <div class = "page-header"> <br>
+        <h1>Enter City Name To Get Weather Report.</h1> </div> <br>
+        <form action = "/city/" method= "POST" class = "form-inline"> <div class = "form-group">
+            {% csrf_token %}
+            {{ form }} </div> <br> <div class = "container"> <br>
+            <button type="submit" class = "btn btn-dark check_button">CHECK.</button>
+        </form>
+        <form action = "/cityip/" method = "POST">
+            {% csrf_token %} <br>
+            <button type="submit" class = "btn btn-danger location_button">CURRENT LOCATION.</button> </div>
+        </form>
+        <form  action = "/forecast/" method = "POST">
+            {% csrf_token %}
+            <button   type="submit" class = "btn btn-success"><-FORECAST.</button>
+        </form> 
+<br>
+        <ul>
+        <li><h2>Country Code: {{ info.sys.country }}</h2></li><br>
+        <li><h2>City Name: {{ info.name }}</h2></li><br>
+        <li><h2>Current  Temperature: {{ info.main.temp|floatformat:1 }} Celcius</h2></li><br>
+        <li><h2>Maximum Pridicted Temperature: {{ info.main.temp_max|floatformat:1 }} Celcius</h2></li><br>
+        <li><h2>Minimum Predicted Temperature: {{ info.main.temp_min|floatformat:1 }} Celcius</h2></li><br>
+        <li><h2>Pressure: {{ info.main.pressure }} hPa</h2></li><br>
+        <li><h2>Wind Speed: {{ info.wind.speed }} Meter/Sec</h2></li><br>
+        <li><h2>Humidity: {{ info.main.humidity }} %</h2></li><br>
+        <li><h2>Cloudiness: {{ info.clouds.all }} %</h2></li><br>
+        <li><h2>Weather Description: {{ info.weather.0.description }}</h2></li><br>
+        <br>
+        </ul>
+
+</div>
+</div>
     </body>
 </html>

@@ -1,0 +1,28 @@
+h1 {
+   color : rgb(153, 0, 38);
+   font-family: 'Lobster';
+   margin-left : 300px;
+   margin-top : 70px;
+}
+
+body {
+     background-color: rgb(70, 129, 219);
+     //padding-left: 400px;
+     //padding-top: 50px;
+ }
+
+.check_button {
+     margin-left : 500px;
+
+}
+
+.location_button {
+     margin-left : 450px;
+}
+
+.forecast_button {
+     //margin-right : 5px;
+     margin-left : 900px;
+     //margin-top : 20px;
+     
+}
