@@ -21,7 +21,7 @@ what we have changed
 5) "git push" push files on GitHub
 ---
 6)"python manage.py runserver" run the website via terminal
-7)"
+7)" 
 $ cd ~/<your-pythonanywhere-username>.pythonanywhere.com
 $ git pull
 "

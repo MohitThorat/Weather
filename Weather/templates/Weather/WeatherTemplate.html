@@ -49,21 +49,29 @@
     <head>
         <meta charset="utf-8">
         <title>Check My Weather!!</title>
- 
-<meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-<link rel="stylesheet" href="{% static 'css/home.css' %}">   </head>
- 
+        <style>
+        .centre
+        {
+               margin:0px auto;
+        }
+       </style>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+          <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+          <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+          <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+          <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" href="{% static 'css/home.css' %}">
+    </head>
+
     <body>
     <div class = "container">
          <div class = "page-header"> <br>
         <h1>Enter City Name To Get Weather Report.</h1> </div> <br>
-        <form action = "/city/" method= "POST" class = "form-inline"> <div class = "form-group">
+        <form action = "/city/" method= "POST" class = "form-inline">
+            <div class = "centre">
             {% csrf_token %}
-            {{ form }} </div> <br> <div class = "container"> <br>
+            {{ form }}
+            </div> <br> <div class = "container"> <br>
             <button type="submit" class = "btn btn-dark check_button">CHECK.</button>
         </form>
         <form action = "/cityip/" method = "POST">
@@ -73,13 +81,13 @@
         <form  action = "/forecast/" method = "POST">
             {% csrf_token %}
             <button   type="submit" class = "btn btn-success"><-FORECAST.</button>
-        </form> 
+        </form>
 <br>
         <ul>
         <li><h2>Country Code: {{ info.sys.country }}</h2></li><br>
         <li><h2>City Name: {{ info.name }}</h2></li><br>
         <li><h2>Current  Temperature: {{ info.main.temp|floatformat:1 }} Celcius</h2></li><br>
-        <li><h2>Maximum Pridicted Temperature: {{ info.main.temp_max|floatformat:1 }} Celcius</h2></li><br>
+        <li><h2>Maximum Predicted Temperature: {{ info.main.temp_max|floatformat:1 }} Celcius</h2></li><br>
         <li><h2>Minimum Predicted Temperature: {{ info.main.temp_min|floatformat:1 }} Celcius</h2></li><br>
         <li><h2>Pressure: {{ info.main.pressure }} hPa</h2></li><br>
         <li><h2>Wind Speed: {{ info.wind.speed }} Meter/Sec</h2></li><br>
